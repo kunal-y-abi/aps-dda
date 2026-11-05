@@ -1,0 +1,8 @@
+flowchart TB
+  Products["Source-owned products<br/>Meaning · time · quality"] --> Analysis["Versioned analysis<br/>Evidence · alternatives"]
+  Analysis --> Workspace["Decision workspace<br/>Question · trade-offs · choice"]
+  Workspace --> Plan["Exact plan + separate authority<br/>Approval or permitted bounded grant"]
+  Trust["Tenant trust + policy<br/>Pinned issuers · keys · roles"] --> Plan
+  Plan --> Source["Source enforcement<br/>Permission · state · invariants"]
+  Source --> Result["Verified outcome<br/>Source receipt · postconditions"]
+  Result -. "record and review" .-> Workspace

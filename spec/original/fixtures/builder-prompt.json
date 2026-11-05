@@ -1,0 +1,29 @@
+{
+  "artifactType": "BuilderPrompt",
+  "header": {
+    "id": "123e4567-e89b-12d3-a456-426614174014",
+    "artifactVersion": "0.1.0",
+    "specVersion": "APS-DDA/0.1",
+    "issuer": "https://ui.example.invalid/aps/builder-prompts",
+    "issuedAt": "2026-10-16T09:00:00Z",
+    "contentDigest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+  },
+  "body": {
+    "applicationSpecRef": {
+      "artifactType": "ApplicationSpec",
+      "id": "123e4567-e89b-12d3-a456-426614174013",
+      "artifactVersion": "0.1.0",
+      "contentDigest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "uri": "https://procurement.example.invalid/aps/artifacts/13"
+    },
+    "targetBuilder": "v0-like reviewed internal builder",
+    "compilerVersion": "0.1.0",
+    "permittedComponentCatalog": "1.0.0",
+    "requestedOutputs": [
+      "reviewable TypeScript UI",
+      "component tests"
+    ],
+    "noSecretDeclaration": true,
+    "promptText": "Render only the declared components and emit an approval event. Do not call a source system directly."
+  }
+}

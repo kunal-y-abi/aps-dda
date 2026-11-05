@@ -1,0 +1,52 @@
+# .NET output and local tools
+**/bin/
+**/obj/
+.vs/
+.idea/
+.vscode/
+TestResults/
+**/TestResults/
+artifacts/
+*.trx
+*.coverage
+*.coveragexml
+*.nupkg
+*.snupkg
+*.log
+.nuget/
+
+# Runtime/test state; never publish source-owned operational data
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+*.db
+*.db-*
+*.db3
+*.db3-*
+demo-runs/
+
+# Credentials, private keys and local environment overrides
+.env
+.env.*
+!.env.example
+secrets/
+keys/
+*.pem
+*.key
+*.pfx
+*.p12
+*.pkcs8
+appsettings.*.local.json
+appsettings.Secrets.json
+
+# OS/editor temporary files
+.DS_Store
+Thumbs.db
+*.user
+*.suo
+*~
+# Keep restore lockfiles, original schemas and all upstream notices tracked.
+*.snk
+*.jwk
+*.der

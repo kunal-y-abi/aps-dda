@@ -1,0 +1,34 @@
+name: .NET reference checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+      - name: Locked restore
+        run: dotnet restore ApsDda.sln --locked-mode
+      - name: Release build
+        run: dotnet build ApsDda.sln -c Release --no-restore -warnaserror
+      - name: All unit, HTTP and acceptance tests
+        run: dotnet test ApsDda.sln -c Release --no-build --no-restore --logger trx --results-directory artifacts/test-results
+      - name: All supported console scenarios
+        run: dotnet run --project examples/ApsDda.InsuranceDemo -c Release --no-build --no-restore -- --all --export artifacts/demo-runs
+      - name: Pack reusable libraries
+        run: |
+          dotnet pack src/ApsDda.Core/ApsDda.Core.csproj -c Release --no-build --no-restore -o artifacts/packages
+          dotnet pack src/ApsDda.Runtime/ApsDda.Runtime.csproj -c Release --no-build --no-restore -o artifacts/packages
+          dotnet pack src/ApsDda.AspNetCore/ApsDda.AspNetCore.csproj -c Release --no-build --no-restore -o artifacts/packages
+      - name: Actual Kestrel and outside-checkout local NuGet consumer
+        run: dotnet run --project tools/ApsDda.Verify -c Release --no-build --no-restore -- . artifacts/packages

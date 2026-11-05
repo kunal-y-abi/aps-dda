@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType><IsPackable>false</IsPackable></PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/ApsDda.AspNetCore/ApsDda.AspNetCore.csproj" />
+    <EmbeddedResource Include="../package-smoke/Program.cs" LogicalName="PackageSmoke.Program.cs" />
+    <EmbeddedResource Include="../package-smoke/PackageSmoke.csproj" LogicalName="PackageSmoke.csproj" />
+  </ItemGroup>
+</Project>

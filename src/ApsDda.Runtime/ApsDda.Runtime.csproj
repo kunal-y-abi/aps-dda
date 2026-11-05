@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Description>AI-assisted experimental APS-DDA selected runtime binding: durable SQLite authority, source operations and verified workflows. Not full conformance or production authentication.</Description>
+    <PackageReadmeFile>PACKAGE_README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../ApsDda.Core/ApsDda.Core.csproj" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.0" />
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="3.53.3" />
+    <None Include="PACKAGE_README.md" Pack="true" PackagePath="/" />
+    <None Include="../../API_CONTRACT.md" Link="API_CONTRACT.md" Pack="true" PackagePath="/" />
+    <None Include="../../docs/reference-binding.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+</Project>

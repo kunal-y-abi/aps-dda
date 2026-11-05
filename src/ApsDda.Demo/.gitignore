@@ -1,0 +1,7 @@
+bin/
+obj/
+*.sqlite
+*.sqlite-*
+*.pem
+*.pfx
+*.key

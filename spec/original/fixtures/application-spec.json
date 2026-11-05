@@ -1,0 +1,57 @@
+{
+  "artifactType": "ApplicationSpec",
+  "header": {
+    "id": "123e4567-e89b-12d3-a456-426614174013",
+    "artifactVersion": "0.1.0",
+    "specVersion": "APS-DDA/0.1",
+    "issuer": "https://ui.example.invalid/aps/appspecs",
+    "issuedAt": "2026-10-16T09:00:00Z",
+    "contentDigest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+  },
+  "body": {
+    "decisionRef": {
+      "artifactType": "DecisionSpec",
+      "id": "123e4567-e89b-12d3-a456-426614174005",
+      "artifactVersion": "0.1.0",
+      "contentDigest": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+      "uri": "https://procurement.example.invalid/aps/artifacts/5"
+    },
+    "evidenceRefs": [
+      {
+        "artifactType": "EvidenceBundle",
+        "id": "123e4567-e89b-12d3-a456-426614174004",
+        "artifactVersion": "0.1.0",
+        "contentDigest": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+        "uri": "https://procurement.example.invalid/aps/artifacts/4"
+      }
+    ],
+    "componentCatalogVersion": "1.0.0",
+    "components": [
+      "evidence-panel",
+      "uncertainty-banner",
+      "approval-card"
+    ],
+    "userInputSchema": {
+      "uri": "https://ui.example.invalid/schemas/approval-event.json",
+      "version": "1.0.0",
+      "digest": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+    },
+    "classification": "internal",
+    "accessibility": [
+      "WCAG-2.2-AA"
+    ],
+    "actionMappings": [
+      {
+        "event": "submitApproval",
+        "planStepId": "cancel-po-7841"
+      }
+    ],
+    "planRef": {
+      "artifactType": "ExecutionPlan",
+      "id": "123e4567-e89b-12d3-a456-426614174006",
+      "artifactVersion": "0.1.0",
+      "contentDigest": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
+      "uri": "https://procurement.example.invalid/aps/artifacts/6"
+    }
+  }
+}

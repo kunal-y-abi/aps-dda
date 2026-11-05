@@ -1,0 +1,23 @@
+sequenceDiagram
+  participant U as Approver
+  participant R as Runtime
+  participant A as Authority
+  participant S as Source
+  U->>R: Review and approve exact plan
+  R->>A: Consume into one workflow
+  A-->>R: Authority-use commit
+  Note over A,S: Authority and source commits are separate
+  R->>R: Persist original invocation
+  R->>S: Exact command and stable key
+  S->>S: Recheck controls and local state
+  S->>S: Local effect + operation commit
+  alt Reply received
+    S-->>R: Signed receipt + postconditions
+  else Reply lost
+    R->>R: Preserve unknown outcome
+    R->>S: Look up original operation
+    S-->>R: Original result or unresolved
+    Note over R,S: No automatic resend
+  end
+  R->>R: Verify source result
+  R-->>U: Verified or unresolved status

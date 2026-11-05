@@ -1,2 +1,4 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Preserve checkout bytes, including pinned schemas, corpora and upstream sources.
+# Automatic LF/CRLF conversion changes the published SHA-256 commitments.
+# New project-authored text should use LF; do not rewrite retained third-party bytes.
+* -text

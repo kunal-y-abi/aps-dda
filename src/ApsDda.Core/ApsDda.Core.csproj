@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Nullable>disable</Nullable><!-- Unmodified upstream files predate nullable; SDK files explicitly enable it. -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1587</NoWarn><!-- Original upstream XML comments precede namespace declarations. -->
+    <Description>Experimental reference implementation of selected APS-DDA v0.1 requirements. AI-assisted development; no certification or full conformance claim.</Description>
+    <PackageReadmeFile>PACKAGE_README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="JsonSchema.Net" Version="7.4.0" />
+    <EmbeddedResource Include="Schema/aps-dda.schema.json" LogicalName="ApsDda.Core.aps-dda.schema.json" />
+    <None Include="PACKAGE_README.md" Pack="true" PackagePath="/" />
+    <None Include="../../API_CONTRACT.md" Link="API_CONTRACT.md" Pack="true" PackagePath="/" />
+    <None Include="ThirdParty/Jcs/**/*" Exclude="ThirdParty/Jcs/**/*.cs" Pack="true" PackagePath="third-party/jcs/%(RecursiveDir)" />
+    <None Include="ThirdParty/Jcs/*.cs" Pack="true" PackagePath="third-party/jcs/" />
+    <None Update="Schema/aps-dda.schema.json" Pack="true" PackagePath="schema/aps-dda.schema.json" />
+  </ItemGroup>
+</Project>

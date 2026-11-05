@@ -1,0 +1,38 @@
+{
+  "artifactType": "PolicyDecision",
+  "header": {
+    "id": "123e4567-e89b-12d3-a456-426614174015",
+    "artifactVersion": "0.1.0",
+    "specVersion": "APS-DDA/0.1",
+    "issuer": "https://policy.example.invalid/aps/decisions",
+    "issuedAt": "2026-10-16T09:04:00Z",
+    "contentDigest": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+  },
+  "body": {
+    "context": {
+      "tenantId": "northwind-test",
+      "subjectId": "user:maya.chen",
+      "workloadId": "app:procurement-console",
+      "executorId": "agent:ops-orchestrator",
+      "purpose": "purchase-order-exception-resolution",
+      "classification": "internal",
+      "residency": "US",
+      "correlationId": "123e4567-e89b-12d3-a456-426614174990",
+      "policyRefs": [
+        {
+          "uri": "https://policy.example.invalid/rules/purchase-order-cancellation",
+          "version": "1.0.0",
+          "digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        }
+      ]
+    },
+    "policyVersion": "1.0.0",
+    "evaluatedAt": "2026-10-16T09:04:00Z",
+    "outcome": "allow-with-human-approval",
+    "decisionDigest": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+    "obligations": [
+      "Require current human approval for the exact execution plan.",
+      "Recheck source authorization and current state before effect."
+    ]
+  }
+}

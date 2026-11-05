@@ -1,0 +1,14 @@
+flowchart LR
+  Claims["Claims aggregates: backlog"] --> Check["Check region, grain, period, units, freshness and quality"]
+  Flood["Flood forecast: scenario arrivals and model assumptions"] --> Check
+  Capacity["Capacity product: throughput, units and reserve"] --> Check
+  Finance["Finance/planning product: budget semantics"] --> Check
+  Check --> Model["Versioned finite analysis: feasible alternatives and uncertainty"]
+  Model --> Decision["DecisionSpec: evidence, method and recommendation"]
+  Decision --> Choice["Accountable selection of an alternative"]
+  Choice --> Plan["Exact plan: complete action payload commitments"]
+  Plan --> Guard{"Source can enforce every required hard invariant?"}
+  Guard -- "yes" --> Authority["Separate approval or bounded source-permitted grant"]
+  Authority --> Action["Named source action and verified receipt"]
+  Guard -- "no" --> Refuse["Refuse or use declared safe non-binding alternative"]
+  Model -. "does not prove future outcomes" .-> Action

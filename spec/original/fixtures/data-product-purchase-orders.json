@@ -1,0 +1,71 @@
+{
+  "artifactType": "DataProduct",
+  "header": {
+    "id": "123e4567-e89b-12d3-a456-426614174001",
+    "artifactVersion": "0.1.0",
+    "specVersion": "APS-DDA/0.1",
+    "issuer": "https://procurement.example.invalid/owners/purchase-orders",
+    "issuedAt": "2026-10-16T09:00:00Z",
+    "contentDigest": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+  },
+  "body": {
+    "name": "Purchase-order operational view",
+    "owner": "https://procurement.example.invalid/owners/purchase-orders",
+    "authoritativeStatus": "authoritative",
+    "schema": {
+      "uri": "https://procurement.example.invalid/schemas/purchase-order.json",
+      "version": "1.0.0",
+      "digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "semanticRefs": [
+      {
+        "namespace": "https://semantics.example.invalid/procurement",
+        "term": "https://semantics.example.invalid/procurement/PurchaseOrder",
+        "version": "1.0.0",
+        "kind": "entity",
+        "localBinding": "purchase_order"
+      }
+    ],
+    "grain": "one row per purchase order at source transaction version",
+    "timeSemantics": {
+      "validTime": "order effective state at read",
+      "transactionTime": "source commit time",
+      "readConsistency": "source-current",
+      "correctionBehavior": "corrected versions supersede but remain queryable for 30 days",
+      "historyBehavior": "30-day version history",
+      "watermarkField": "source_commit_sequence"
+    },
+    "quality": {
+      "freshnessSlo": "source-current; target under 60 seconds",
+      "qualityStateValues": [
+        "healthy",
+        "delayed",
+        "degraded"
+      ]
+    },
+    "access": {
+      "classification": "internal",
+      "permittedPurposes": [
+        "purchase-order-exception-resolution"
+      ],
+      "retention": "query result retained 24 hours",
+      "residency": [
+        "US"
+      ]
+    },
+    "readContract": {
+      "permittedQueryShapes": [
+        "lookup-by-purchase-order-id"
+      ],
+      "maxRows": 1,
+      "maxScan": "one keyed record",
+      "maxDuration": "PT5S",
+      "paging": "not applicable"
+    },
+    "evidenceProfile": {
+      "includeObservedAt": true,
+      "includeSourceVersion": true,
+      "includeQualityState": true
+    }
+  }
+}

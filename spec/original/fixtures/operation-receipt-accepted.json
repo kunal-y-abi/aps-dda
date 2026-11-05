@@ -1,0 +1,26 @@
+{
+  "artifactType": "OperationReceipt",
+  "header": {
+    "id": "123e4567-e89b-12d3-a456-426614174009",
+    "artifactVersion": "0.1.0",
+    "specVersion": "APS-DDA/0.1",
+    "issuer": "https://procurement.example.invalid/aps/receipts",
+    "issuedAt": "2026-10-16T09:00:00Z",
+    "contentDigest": "sha256:9999999999999999999999999999999999999999999999999999999999999999"
+  },
+  "body": {
+    "invocationRef": {
+      "artifactType": "CommandInvocation",
+      "id": "123e4567-e89b-12d3-a456-426614174008",
+      "artifactVersion": "0.1.0",
+      "contentDigest": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
+      "uri": "https://procurement.example.invalid/aps/artifacts/8"
+    },
+    "operationId": "op-po-7841-cancel-01",
+    "receiptSequence": 1,
+    "observedAt": "2026-10-16T09:08:01Z",
+    "outcome": "accepted",
+    "effectStatus": "dispatch accepted; source commit not yet verified",
+    "reconciliationRoute": "https://procurement.example.invalid/aps/operations/op-po-7841-cancel-01"
+  }
+}

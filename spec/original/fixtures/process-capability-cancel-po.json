@@ -1,0 +1,77 @@
+{
+  "artifactType": "ProcessCapability",
+  "header": {
+    "id": "123e4567-e89b-12d3-a456-426614174002",
+    "artifactVersion": "0.1.0",
+    "specVersion": "APS-DDA/0.1",
+    "issuer": "https://procurement.example.invalid/owners/order-command",
+    "issuedAt": "2026-10-16T09:00:00Z",
+    "contentDigest": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "body": {
+    "name": "CancelPurchaseOrder",
+    "owner": "https://procurement.example.invalid/owners/order-command",
+    "commandSemantic": {
+      "namespace": "https://semantics.example.invalid/procurement",
+      "term": "https://semantics.example.invalid/procurement/CancelPurchaseOrder",
+      "version": "1.0.0",
+      "kind": "command",
+      "localBinding": "CancelPurchaseOrder"
+    },
+    "endpoint": {
+      "endpoint": "https://procurement.example.invalid/aps/commands/cancel-purchase-order",
+      "audience": "https://procurement.example.invalid/",
+      "authentication": "oauth2",
+      "trustKeyRef": "https://registry.example.invalid/keys/procurement"
+    },
+    "inputSchema": {
+      "uri": "https://procurement.example.invalid/schemas/cancel-po.json",
+      "version": "1.0.0",
+      "digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+    },
+    "resultSchema": {
+      "uri": "https://procurement.example.invalid/schemas/cancel-result.json",
+      "version": "1.0.0",
+      "digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333"
+    },
+    "resourceScope": "one purchase order addressed by canonical resource URI",
+    "allowedTransitions": [
+      "Approved -> Cancelled when no receipt or accrual blocks cancellation"
+    ],
+    "invariantRefs": [
+      {
+        "namespace": "https://semantics.example.invalid/procurement",
+        "term": "https://semantics.example.invalid/procurement/CancelPurchaseOrder",
+        "version": "1.0.0",
+        "kind": "command",
+        "localBinding": "CancelPurchaseOrder"
+      }
+    ],
+    "precondition": {
+      "required": true,
+      "mechanism": "strong ETag via source version"
+    },
+    "idempotency": {
+      "domain": "procurement:cancel-purchase-order",
+      "minimumKeyLength": 16,
+      "retention": "P30D",
+      "duplicateBehavior": "same key and payload digest returns original operation receipt",
+      "operationLookup": "https://procurement.example.invalid/aps/operations/{operationId}"
+    },
+    "authority": {
+      "humanApprovalRequired": true,
+      "policyGrantAllowed": false,
+      "sourceAuthorization": true
+    },
+    "riskTier": "high",
+    "receiptProfile": {
+      "sourceIssued": true,
+      "postconditionRequired": true
+    },
+    "cancellation": "cooperative before source commit; source reports outcome",
+    "compensation": {
+      "mode": "non-compensable",
+      "manualRecoveryOwner": "role:procurement-exception-owner"
+    }
+  }
+}

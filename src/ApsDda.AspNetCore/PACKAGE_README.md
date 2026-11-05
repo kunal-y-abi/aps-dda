@@ -1,0 +1,7 @@
+# ApsDda.AspNetCore
+
+AI-assisted experimental .NET 10 ASP.NET Core boundary and typed HttpClient for selected APS-DDA v0.1 runtime APIs. Not full conformance, a production identity provider, certification or a production hosting configuration. Author: Kunal Yadav; maintainer: @kunal-y-abi. New code is Apache-2.0; authored documentation is CC BY 4.0. See `package-license.md` and `LICENSING.md` for full notices and independently licensed dependencies, including mixed-license Core. Source and development/testing were prepared with AI assistance, not human peer review. Source: https://github.com/kunal-y-abi/aps-dda .
+
+Use `AddApsDdaHttp`, `UseApsDdaHttp`, `MapApsDda`, or `ApsDdaApplication.Create` with an already provisioned `WorkflowRuntime`, exact pinned manifest/contracts/resources and explicit random bearer-token-to-server-identity map. No administrator, default token, request-configured trust, reset, source-write or fault endpoint exists. HTTPS is enforced; a development-only loopback HTTP exception requires explicit opt-in.
+
+Original-schema artifacts and detached signatures stay unchanged. Experimental `aps-dda.experimental/http/1` envelopes carry normalized payload maps separately, and approval binds a digest of the exact retained plan reference and payloads. The typed client uses those same records and strictly parses bounded responses. See the included `http-quickstart.md` for exact commands, endpoint contracts and limitations.

@@ -1,0 +1,16 @@
+flowchart TB
+  User["Accountable user: question and plan choice"] --> Intent["Intent coordinator: untrusted input and text"]
+  Intent --> Control["Trusted control: contracts, context, policy and exact plan"]
+  Catalog["Tenant-admin pins: issuers, keys, roles, contracts and semantics"] --> Control
+  Sources["Source-owned products: claims, forecast, capacity and finance"] --> Evidence["Retained observational evidence: meaning, time and quality"]
+  Evidence --> Model["Specialist analysis: versioned method, assumptions and alternatives"]
+  Model --> Control
+  Evidence --> Control
+  Control --> Authority["Separate authority: authenticated approval or bounded grant"]
+  Authority --> Dispatch["Durable workflow and original invocation identity"]
+  Dispatch --> Source["Source enforcement: current permission, state and invariants"]
+  Source --> Result["Source-issued receipt and verified postcondition"]
+  Result --> View["Renderer: evidence, uncertainty, exact effects and truthful status"]
+  Model --> View
+  View --> User
+  Intent -. "cannot install policy, keys or source commands" .-> Catalog

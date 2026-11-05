@@ -1,0 +1,25 @@
+<Project>
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>14.0</LangVersion>
+    <Deterministic>true</Deterministic>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <Version>0.1.0-preview.1</Version>
+    <Authors>Kunal Yadav</Authors>
+    <Copyright>Copyright © 2026 Kunal Yadav</Copyright>
+    <RepositoryUrl>https://github.com/kunal-y-abi/aps-dda</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/kunal-y-abi/aps-dda</PackageProjectUrl>
+    <PackageLicenseFile>package-license.md</PackageLicenseFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)LICENSE" Link="LICENSE" Pack="true" PackagePath="/" />
+    <None Include="$(MSBuildThisFileDirectory)LICENSING.md" Link="LICENSING.md" Pack="true" PackagePath="/" />
+    <None Include="$(MSBuildThisFileDirectory)package-license.md" Link="package-license.md" Pack="true" PackagePath="/" />
+    <None Include="$(MSBuildThisFileDirectory)LICENSES/CC-BY-4.0.txt" Link="LICENSES/CC-BY-4.0.txt" Pack="true" PackagePath="LICENSES/" />
+    <None Include="$(MSBuildThisFileDirectory)SOURCE.md" Link="SOURCE.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+</Project>

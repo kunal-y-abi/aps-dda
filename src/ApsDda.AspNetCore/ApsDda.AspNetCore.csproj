@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Description>AI-assisted experimental APS-DDA ASP.NET Core HTTP boundary and typed client. Selected binding, not production identity infrastructure or full conformance.</Description>
+    <PackageReadmeFile>PACKAGE_README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <ProjectReference Include="../ApsDda.Runtime/ApsDda.Runtime.csproj" />
+    <None Include="PACKAGE_README.md" Pack="true" PackagePath="/" />
+    <None Include="API_CONTRACT.md" Pack="true" PackagePath="/" />
+    <None Include="../../docs/http-quickstart.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+</Project>

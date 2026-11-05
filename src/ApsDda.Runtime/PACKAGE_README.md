@@ -1,0 +1,7 @@
+# ApsDda.Runtime — experimental selected APS-DDA v0.1 binding
+
+.NET 10 library with file-backed SQLite artifacts/evidence, authenticated authority admission and single-workflow consumption, source-local versioned effects/idempotency, original signed receipts/postcondition verification, and conservative workflow reconciliation. Uses unchanged original-schema artifacts from ApsDda.Core. Source effects and source operation records share one local transaction; authority consumption is separate. No cross-source atomicity is claimed.
+
+New source development was AI-assisted. This is not complete conformance, certification, production OAuth/mTLS, or a live insurer integration. Keys and identities must be provisioned by a trusted host. Author: Kunal Yadav; maintainer: @kunal-y-abi. New code is Apache-2.0; authored documentation is CC BY 4.0. Read `package-license.md` and `LICENSING.md` for full notices and dependency exceptions, including the mixed-license Core dependency, MIT managed dependencies and Apache-2.0/public-domain SQLite components. Third-party dependencies retain their own terms. Source: https://github.com/kunal-y-abi/aps-dda .
+
+See included reference-binding.md and API_CONTRACT.md for exact APIs, tested guarantees and unsupported controls. Do not treat policy evaluation allow, retrieved content or a user-supplied identity/context as execution authority. No automatic resend occurs after an ambiguous original operation.

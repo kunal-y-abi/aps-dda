@@ -1,0 +1,2185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json",
+  "title": "APS-DDA v0.1 Working Draft Artifact Bundle",
+  "description": "Structural schema only. Runtime authorization, signatures, hashes, semantics, lifecycle legality, freshness and source effects are outside JSON Schema validation.",
+  "oneOf": [
+    {
+      "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/CapabilityManifest"
+    },
+    {
+      "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/DataProduct"
+    },
+    {
+      "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ProcessCapability"
+    },
+    {
+      "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Task"
+    },
+    {
+      "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Negotiation"
+    },
+    {
+      "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/EvidenceBundle"
+    },
+    {
+      "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/DecisionSpec"
+    },
+    {
+      "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ExecutionPlan"
+    },
+    {
+      "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/PolicyDecision"
+    },
+    {
+      "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Authority"
+    },
+    {
+      "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Approval"
+    },
+    {
+      "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/CommandInvocation"
+    },
+    {
+      "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/OperationReceipt"
+    },
+    {
+      "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ApplicationSpec"
+    },
+    {
+      "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/BuilderPrompt"
+    }
+  ],
+  "$defs": {
+    "Uuid": {
+      "type": "string",
+      "format": "uuid",
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/Uuid",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "Uri": {
+      "type": "string",
+      "format": "uri",
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/Uri",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "DateTime": {
+      "type": "string",
+      "format": "date-time",
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/DateTime",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "Digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/Digest",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "Semver": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:[-+][0-9A-Za-z.-]+)?$",
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/Semver",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "ArtifactType": {
+      "type": "string",
+      "enum": [
+        "CapabilityManifest",
+        "DataProduct",
+        "ProcessCapability",
+        "Task",
+        "Negotiation",
+        "EvidenceBundle",
+        "DecisionSpec",
+        "ExecutionPlan",
+        "PolicyDecision",
+        "Authority",
+        "Approval",
+        "CommandInvocation",
+        "OperationReceipt",
+        "ApplicationSpec",
+        "BuilderPrompt"
+      ],
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/ArtifactType",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "ArtifactHeader": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "artifactVersion",
+        "specVersion",
+        "issuer",
+        "issuedAt",
+        "contentDigest"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Uuid"
+        },
+        "artifactVersion": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Semver"
+        },
+        "specVersion": {
+          "const": "APS-DDA/0.1"
+        },
+        "issuer": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Uri"
+        },
+        "issuedAt": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/DateTime"
+        },
+        "contentDigest": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Digest"
+        }
+      },
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/ArtifactHeader",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "ArtifactRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifactType",
+        "id",
+        "artifactVersion",
+        "contentDigest"
+      ],
+      "properties": {
+        "artifactType": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactType"
+        },
+        "id": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Uuid"
+        },
+        "artifactVersion": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Semver"
+        },
+        "contentDigest": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Digest"
+        },
+        "uri": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Uri"
+        }
+      },
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/ArtifactRef",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "SemanticRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "namespace",
+        "term",
+        "version",
+        "kind",
+        "localBinding"
+      ],
+      "properties": {
+        "namespace": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Uri"
+        },
+        "term": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Uri"
+        },
+        "version": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Semver"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "entity",
+            "attribute",
+            "metric",
+            "command",
+            "state",
+            "policy"
+          ]
+        },
+        "localBinding": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/SemanticRef",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "SchemaRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "uri",
+        "version",
+        "digest"
+      ],
+      "properties": {
+        "uri": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Uri"
+        },
+        "version": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Semver"
+        },
+        "digest": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Digest"
+        }
+      },
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/SchemaRef",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "Extensions": {
+      "type": "object",
+      "patternProperties": {
+        "^https://": true
+      },
+      "additionalProperties": false,
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/Extensions",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "ExecutionContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tenantId",
+        "subjectId",
+        "workloadId",
+        "executorId",
+        "purpose",
+        "correlationId",
+        "policyRefs"
+      ],
+      "properties": {
+        "tenantId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "subjectId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "workloadId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "executorId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "delegationRef": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "classification": {
+          "type": "string",
+          "minLength": 1
+        },
+        "residency": {
+          "type": "string",
+          "minLength": 1
+        },
+        "correlationId": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Uuid"
+        },
+        "policyRefs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/PolicyRef"
+          }
+        }
+      },
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/ExecutionContext",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "EndpointTrust": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "endpoint",
+        "audience",
+        "authentication"
+      ],
+      "properties": {
+        "endpoint": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Uri"
+        },
+        "audience": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Uri"
+        },
+        "authentication": {
+          "type": "string",
+          "enum": [
+            "oauth2",
+            "mTLS",
+            "signed-request",
+            "other"
+          ]
+        },
+        "trustKeyRef": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Uri"
+        }
+      },
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/EndpointTrust",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "ArtifactBase": {
+      "type": "object",
+      "required": [
+        "artifactType",
+        "header",
+        "body"
+      ],
+      "properties": {
+        "artifactType": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactType"
+        },
+        "header": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactHeader"
+        },
+        "body": {
+          "type": "object"
+        }
+      },
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/ArtifactBase",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "CapabilityManifest": {
+      "allOf": [
+        {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactBase"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "artifactType": {
+              "const": "CapabilityManifest"
+            },
+            "header": {
+              "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactHeader"
+            },
+            "body": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "roles",
+                "profileVersions",
+                "bindings",
+                "endpoints",
+                "capabilityRefs",
+                "expiresAt"
+              ],
+              "properties": {
+                "roles": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "APS-Read-Publisher",
+                      "APS-Action-Executor",
+                      "APS-Orchestrator",
+                      "APS-Renderer"
+                    ]
+                  }
+                },
+                "profileVersions": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "const": "APS-DDA/0.1"
+                  }
+                },
+                "bindings": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "https-json",
+                      "mcp-2026-07-28",
+                      "a2a-v1"
+                    ]
+                  }
+                },
+                "endpoints": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/EndpointTrust"
+                  }
+                },
+                "capabilityRefs": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+                  }
+                },
+                "limits": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": [
+                      "string",
+                      "number",
+                      "integer",
+                      "boolean"
+                    ]
+                  }
+                },
+                "residency": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "deprecation": {
+                  "type": "string"
+                },
+                "expiresAt": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/DateTime"
+                },
+                "extensions": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Extensions"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/CapabilityManifest",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "DataProduct": {
+      "allOf": [
+        {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactBase"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "artifactType": {
+              "const": "DataProduct"
+            },
+            "header": {
+              "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactHeader"
+            },
+            "body": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "name",
+                "owner",
+                "authoritativeStatus",
+                "schema",
+                "semanticRefs",
+                "grain",
+                "timeSemantics",
+                "quality",
+                "access",
+                "readContract",
+                "evidenceProfile"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "owner": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Uri"
+                },
+                "authoritativeStatus": {
+                  "type": "string",
+                  "enum": [
+                    "authoritative",
+                    "derived",
+                    "observational"
+                  ]
+                },
+                "schema": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/SchemaRef"
+                },
+                "semanticRefs": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/SemanticRef"
+                  }
+                },
+                "grain": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "lineage": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+                  }
+                },
+                "timeSemantics": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "validTime",
+                    "transactionTime",
+                    "readConsistency",
+                    "correctionBehavior"
+                  ],
+                  "properties": {
+                    "validTime": {
+                      "type": "string"
+                    },
+                    "transactionTime": {
+                      "type": "string"
+                    },
+                    "readConsistency": {
+                      "type": "string",
+                      "enum": [
+                        "source-current",
+                        "snapshot",
+                        "coordinated-snapshot",
+                        "observational"
+                      ]
+                    },
+                    "correctionBehavior": {
+                      "type": "string"
+                    },
+                    "historyBehavior": {
+                      "type": "string"
+                    },
+                    "watermarkField": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "quality": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "freshnessSlo",
+                    "qualityStateValues"
+                  ],
+                  "properties": {
+                    "freshnessSlo": {
+                      "type": "string"
+                    },
+                    "qualityStateValues": {
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "access": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "classification",
+                    "permittedPurposes",
+                    "retention",
+                    "residency"
+                  ],
+                  "properties": {
+                    "classification": {
+                      "type": "string"
+                    },
+                    "permittedPurposes": {
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "retention": {
+                      "type": "string"
+                    },
+                    "residency": {
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "readContract": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "permittedQueryShapes",
+                    "maxRows",
+                    "maxScan",
+                    "maxDuration"
+                  ],
+                  "properties": {
+                    "permittedQueryShapes": {
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "maxRows": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "maxScan": {
+                      "type": "string"
+                    },
+                    "maxDuration": {
+                      "type": "string"
+                    },
+                    "paging": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "evidenceProfile": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "includeObservedAt",
+                    "includeSourceVersion",
+                    "includeQualityState"
+                  ],
+                  "properties": {
+                    "includeObservedAt": {
+                      "const": true
+                    },
+                    "includeSourceVersion": {
+                      "const": true
+                    },
+                    "includeQualityState": {
+                      "const": true
+                    }
+                  }
+                },
+                "extensions": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Extensions"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/DataProduct",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "ProcessCapability": {
+      "allOf": [
+        {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactBase"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "artifactType": {
+              "const": "ProcessCapability"
+            },
+            "header": {
+              "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactHeader"
+            },
+            "body": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "name",
+                "owner",
+                "commandSemantic",
+                "endpoint",
+                "inputSchema",
+                "resultSchema",
+                "allowedTransitions",
+                "precondition",
+                "idempotency",
+                "authority",
+                "riskTier",
+                "receiptProfile",
+                "compensation"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "owner": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Uri"
+                },
+                "commandSemantic": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/SemanticRef"
+                },
+                "endpoint": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/EndpointTrust"
+                },
+                "inputSchema": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/SchemaRef"
+                },
+                "resultSchema": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/SchemaRef"
+                },
+                "resourceScope": {
+                  "type": "string"
+                },
+                "allowedTransitions": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "invariantRefs": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/SemanticRef"
+                  }
+                },
+                "precondition": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "required",
+                    "mechanism"
+                  ],
+                  "properties": {
+                    "required": {
+                      "const": true
+                    },
+                    "mechanism": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "idempotency": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "domain",
+                    "minimumKeyLength",
+                    "retention",
+                    "duplicateBehavior",
+                    "operationLookup"
+                  ],
+                  "properties": {
+                    "domain": {
+                      "type": "string"
+                    },
+                    "minimumKeyLength": {
+                      "type": "integer",
+                      "minimum": 16
+                    },
+                    "retention": {
+                      "type": "string"
+                    },
+                    "duplicateBehavior": {
+                      "type": "string"
+                    },
+                    "operationLookup": {
+                      "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Uri"
+                    }
+                  }
+                },
+                "authority": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "humanApprovalRequired",
+                    "policyGrantAllowed",
+                    "sourceAuthorization"
+                  ],
+                  "properties": {
+                    "humanApprovalRequired": {
+                      "type": "boolean"
+                    },
+                    "policyGrantAllowed": {
+                      "type": "boolean"
+                    },
+                    "sourceAuthorization": {
+                      "const": true
+                    }
+                  }
+                },
+                "riskTier": {
+                  "type": "string",
+                  "enum": [
+                    "low",
+                    "moderate",
+                    "high",
+                    "prohibited"
+                  ]
+                },
+                "receiptProfile": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "sourceIssued",
+                    "postconditionRequired"
+                  ],
+                  "properties": {
+                    "sourceIssued": {
+                      "const": true
+                    },
+                    "postconditionRequired": {
+                      "const": true
+                    }
+                  }
+                },
+                "cancellation": {
+                  "type": "string"
+                },
+                "compensation": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "mode"
+                  ],
+                  "properties": {
+                    "mode": {
+                      "type": "string",
+                      "enum": [
+                        "named-command",
+                        "non-compensable",
+                        "source-local-atomic"
+                      ]
+                    },
+                    "capabilityRef": {
+                      "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+                    },
+                    "manualRecoveryOwner": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "allOf": [
+                    {
+                      "if": {
+                        "required": [
+                          "mode"
+                        ],
+                        "properties": {
+                          "mode": {
+                            "const": "named-command"
+                          }
+                        }
+                      },
+                      "then": {
+                        "required": [
+                          "capabilityRef"
+                        ]
+                      }
+                    },
+                    {
+                      "if": {
+                        "required": [
+                          "mode"
+                        ],
+                        "properties": {
+                          "mode": {
+                            "const": "non-compensable"
+                          }
+                        }
+                      },
+                      "then": {
+                        "required": [
+                          "manualRecoveryOwner"
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "extensions": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Extensions"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/ProcessCapability",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "Task": {
+      "allOf": [
+        {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactBase"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "artifactType": {
+              "const": "Task"
+            },
+            "header": {
+              "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactHeader"
+            },
+            "body": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "mode",
+                "context",
+                "expiresAt"
+              ],
+              "properties": {
+                "mode": {
+                  "type": "string",
+                  "enum": [
+                    "READ",
+                    "DECIDE",
+                    "ACT"
+                  ]
+                },
+                "context": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ExecutionContext"
+                },
+                "inputRefs": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+                  }
+                },
+                "riskBound": {
+                  "type": "string"
+                },
+                "costBound": {
+                  "type": "string"
+                },
+                "expiresAt": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/DateTime"
+                },
+                "extensions": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Extensions"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/Task",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "Negotiation": {
+      "allOf": [
+        {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactBase"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "artifactType": {
+              "const": "Negotiation"
+            },
+            "header": {
+              "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactHeader"
+            },
+            "body": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "taskRef",
+                "status",
+                "changedFields",
+                "reasons",
+                "expiresAt"
+              ],
+              "properties": {
+                "taskRef": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "counteroffer",
+                    "refusal",
+                    "accepted"
+                  ]
+                },
+                "changedFields": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "reasons": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "expiresAt": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/DateTime"
+                },
+                "extensions": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Extensions"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/Negotiation",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "EvidenceBundle": {
+      "allOf": [
+        {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactBase"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "artifactType": {
+              "const": "EvidenceBundle"
+            },
+            "header": {
+              "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactHeader"
+            },
+            "body": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "context",
+                "observationMode",
+                "items"
+              ],
+              "properties": {
+                "context": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ExecutionContext"
+                },
+                "observationMode": {
+                  "type": "string",
+                  "enum": [
+                    "observational",
+                    "coordinated-snapshot"
+                  ]
+                },
+                "items": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "productRef",
+                      "semanticRefs",
+                      "queryDigest",
+                      "observedAt",
+                      "sourceVersion",
+                      "qualityState",
+                      "cacheStatus",
+                      "valueRef"
+                    ],
+                    "properties": {
+                      "productRef": {
+                        "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+                      },
+                      "semanticRefs": {
+                        "type": "array",
+                        "minItems": 1,
+                        "items": {
+                          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/SemanticRef"
+                        }
+                      },
+                      "queryDigest": {
+                        "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Digest"
+                      },
+                      "observedAt": {
+                        "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/DateTime"
+                      },
+                      "sourceVersion": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "watermark": {
+                        "type": "string"
+                      },
+                      "qualityState": {
+                        "type": "string"
+                      },
+                      "cacheStatus": {
+                        "type": "string",
+                        "enum": [
+                          "live",
+                          "declared-cache",
+                          "materialized-product"
+                        ]
+                      },
+                      "valueRef": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  }
+                },
+                "extensions": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Extensions"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/EvidenceBundle",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "DecisionSpec": {
+      "allOf": [
+        {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactBase"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "artifactType": {
+              "const": "DecisionSpec"
+            },
+            "header": {
+              "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactHeader"
+            },
+            "body": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "context",
+                "accountableOwner",
+                "question",
+                "objective",
+                "hardConstraints",
+                "alternatives",
+                "evidenceRefs",
+                "method",
+                "assumptions",
+                "uncertainty",
+                "recommendation",
+                "actionEligibility"
+              ],
+              "properties": {
+                "context": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ExecutionContext"
+                },
+                "accountableOwner": {
+                  "type": "string"
+                },
+                "question": {
+                  "type": "string"
+                },
+                "objective": {
+                  "type": "string"
+                },
+                "hardConstraints": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "alternatives": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "evidenceRefs": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+                  }
+                },
+                "method": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "type",
+                    "version",
+                    "parameterDigest"
+                  ],
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "deterministic-rules",
+                        "deterministic-formula",
+                        "optimizer",
+                        "manual"
+                      ]
+                    },
+                    "version": {
+                      "type": "string"
+                    },
+                    "parameterDigest": {
+                      "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Digest"
+                    }
+                  }
+                },
+                "assumptions": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "uncertainty": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "recommendation": {
+                  "type": "string"
+                },
+                "actionEligibility": {
+                  "type": "string",
+                  "enum": [
+                    "eligible",
+                    "ineligible",
+                    "manual-review-required"
+                  ]
+                },
+                "extensions": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Extensions"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/DecisionSpec",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "PlanStep": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stepId",
+        "dependsOn",
+        "capabilityRef",
+        "target",
+        "payloadDigest",
+        "expectedState",
+        "idempotencyKey",
+        "idempotencyDomain",
+        "invocationFingerprint",
+        "evidenceRefs",
+        "risk",
+        "expiry",
+        "compensation"
+      ],
+      "properties": {
+        "stepId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "dependsOn": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "capabilityRef": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+        },
+        "target": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Uri"
+        },
+        "payloadDigest": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Digest"
+        },
+        "expectedState": {
+          "type": "string",
+          "minLength": 1
+        },
+        "idempotencyKey": {
+          "type": "string",
+          "minLength": 16
+        },
+        "evidenceRefs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+          }
+        },
+        "risk": {
+          "type": "string"
+        },
+        "expiry": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/DateTime"
+        },
+        "compensation": {
+          "type": "string",
+          "enum": [
+            "named-command",
+            "non-compensable",
+            "source-local-atomic"
+          ]
+        },
+        "idempotencyDomain": {
+          "type": "string",
+          "minLength": 1
+        },
+        "invocationFingerprint": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Digest"
+        },
+        "compensationCapabilityRef": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+        },
+        "manualRecoveryOwner": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/PlanStep",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "allOf": [
+        {
+          "if": {
+            "required": [
+              "compensation"
+            ],
+            "properties": {
+              "compensation": {
+                "const": "named-command"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "compensationCapabilityRef"
+            ]
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "compensation"
+            ],
+            "properties": {
+              "compensation": {
+                "const": "non-compensable"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "manualRecoveryOwner"
+            ]
+          }
+        }
+      ]
+    },
+    "ExecutionPlan": {
+      "allOf": [
+        {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactBase"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "artifactType": {
+              "const": "ExecutionPlan"
+            },
+            "header": {
+              "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactHeader"
+            },
+            "body": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "context",
+                "decisionRef",
+                "planDigest",
+                "policyRef",
+                "executionWindow",
+                "steps"
+              ],
+              "properties": {
+                "context": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ExecutionContext"
+                },
+                "decisionRef": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+                },
+                "planDigest": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/PlanDigest"
+                },
+                "policyRef": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+                },
+                "executionWindow": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "notBefore",
+                    "expiresAt"
+                  ],
+                  "properties": {
+                    "notBefore": {
+                      "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/DateTime"
+                    },
+                    "expiresAt": {
+                      "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/DateTime"
+                    }
+                  }
+                },
+                "steps": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/PlanStep"
+                  }
+                },
+                "extensions": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Extensions"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/ExecutionPlan",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "PolicyDecision": {
+      "allOf": [
+        {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactBase"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "artifactType": {
+              "const": "PolicyDecision"
+            },
+            "header": {
+              "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactHeader"
+            },
+            "body": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "context",
+                "policyVersion",
+                "evaluatedAt",
+                "outcome",
+                "decisionDigest"
+              ],
+              "properties": {
+                "context": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ExecutionContext"
+                },
+                "policyVersion": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Semver"
+                },
+                "evaluatedAt": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/DateTime"
+                },
+                "outcome": {
+                  "type": "string",
+                  "enum": [
+                    "allow",
+                    "allow-with-human-approval",
+                    "deny",
+                    "indeterminate"
+                  ]
+                },
+                "decisionDigest": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Digest"
+                },
+                "obligations": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "extensions": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Extensions"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/PolicyDecision",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "Authority": {
+      "allOf": [
+        {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactBase"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "artifactType": {
+              "const": "Authority"
+            },
+            "header": {
+              "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactHeader"
+            },
+            "body": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "context",
+                "authorityKind",
+                "planRef",
+                "planDigest",
+                "scope",
+                "issuedAt",
+                "expiresAt",
+                "revocationRef"
+              ],
+              "properties": {
+                "context": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ExecutionContext"
+                },
+                "authorityKind": {
+                  "type": "string",
+                  "enum": [
+                    "policy-grant",
+                    "delegation"
+                  ]
+                },
+                "planRef": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+                },
+                "planDigest": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/PlanDigest"
+                },
+                "scope": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "capabilityRefs",
+                    "resourceBoundary",
+                    "purpose",
+                    "sourceAudiences",
+                    "allowedTransitions",
+                    "riskTier",
+                    "evidenceRefs"
+                  ],
+                  "properties": {
+                    "capabilityRefs": {
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+                      }
+                    },
+                    "resourceBoundary": {
+                      "type": "string"
+                    },
+                    "purpose": {
+                      "type": "string"
+                    },
+                    "maximumAmount": {
+                      "type": "string"
+                    },
+                    "maximumQuantity": {
+                      "type": "string"
+                    },
+                    "maximumRate": {
+                      "type": "string"
+                    },
+                    "sourceAudiences": {
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Uri"
+                      }
+                    },
+                    "allowedTransitions": {
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "riskTier": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "evidenceRefs": {
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+                      }
+                    }
+                  }
+                },
+                "issuedAt": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/DateTime"
+                },
+                "expiresAt": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/DateTime"
+                },
+                "revocationRef": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Uri"
+                },
+                "extensions": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Extensions"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/Authority",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "Approval": {
+      "allOf": [
+        {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactBase"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "artifactType": {
+              "const": "Approval"
+            },
+            "header": {
+              "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactHeader"
+            },
+            "body": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "context",
+                "planRef",
+                "planDigest",
+                "approverId",
+                "policyRef",
+                "issuedAt",
+                "expiresAt",
+                "singleUse",
+                "allowedStepIds",
+                "effectSummary"
+              ],
+              "properties": {
+                "context": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ExecutionContext"
+                },
+                "planRef": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+                },
+                "planDigest": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/PlanDigest"
+                },
+                "approverId": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "authenticationEvidenceRef": {
+                  "type": "string"
+                },
+                "policyRef": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+                },
+                "issuedAt": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/DateTime"
+                },
+                "expiresAt": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/DateTime"
+                },
+                "singleUse": {
+                  "const": true
+                },
+                "extensions": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Extensions"
+                },
+                "allowedStepIds": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "effectSummary": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        }
+      ],
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/Approval",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "CommandInvocation": {
+      "allOf": [
+        {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactBase"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "artifactType": {
+              "const": "CommandInvocation"
+            },
+            "header": {
+              "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactHeader"
+            },
+            "body": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "context",
+                "planRef",
+                "planDigest",
+                "stepId",
+                "capabilityRef",
+                "target",
+                "payloadDigest",
+                "authorityRefs",
+                "idempotencyKey",
+                "idempotencyDomain",
+                "invocationFingerprint",
+                "expectedState",
+                "receiptRoute"
+              ],
+              "properties": {
+                "context": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ExecutionContext"
+                },
+                "planRef": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+                },
+                "planDigest": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/PlanDigest"
+                },
+                "stepId": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "capabilityRef": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+                },
+                "target": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Uri"
+                },
+                "payloadDigest": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Digest"
+                },
+                "authorityRefs": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+                  }
+                },
+                "idempotencyKey": {
+                  "type": "string",
+                  "minLength": 16
+                },
+                "expectedState": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "receiptRoute": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Uri"
+                },
+                "extensions": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Extensions"
+                },
+                "idempotencyDomain": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "invocationFingerprint": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Digest"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/CommandInvocation",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "OperationReceipt": {
+      "allOf": [
+        {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactBase"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "artifactType": {
+              "const": "OperationReceipt"
+            },
+            "header": {
+              "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactHeader"
+            },
+            "body": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "invocationRef",
+                "operationId",
+                "receiptSequence",
+                "observedAt",
+                "outcome",
+                "effectStatus",
+                "reconciliationRoute"
+              ],
+              "properties": {
+                "invocationRef": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+                },
+                "operationId": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "receiptSequence": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "predecessorReceiptRef": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+                },
+                "observedAt": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/DateTime"
+                },
+                "outcome": {
+                  "type": "string",
+                  "enum": [
+                    "accepted",
+                    "in-progress",
+                    "completed",
+                    "failed-no-effect",
+                    "cancelled-no-effect",
+                    "cancelled-after-effect",
+                    "unknown-effect",
+                    "manual-resolution-required",
+                    "compensated"
+                  ]
+                },
+                "effectStatus": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "resourceVersion": {
+                  "type": "string"
+                },
+                "postconditionEvidenceRefs": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+                  }
+                },
+                "safeError": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Error"
+                },
+                "reconciliationRoute": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Uri"
+                },
+                "extensions": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Extensions"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "body"
+            ],
+            "properties": {
+              "body": {
+                "required": [
+                  "outcome"
+                ],
+                "properties": {
+                  "outcome": {
+                    "enum": [
+                      "completed",
+                      "compensated"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "body": {
+                "required": [
+                  "postconditionEvidenceRefs"
+                ],
+                "properties": {
+                  "postconditionEvidenceRefs": {
+                    "minItems": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/OperationReceipt",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "ApplicationSpec": {
+      "allOf": [
+        {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactBase"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "artifactType": {
+              "const": "ApplicationSpec"
+            },
+            "header": {
+              "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactHeader"
+            },
+            "body": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "decisionRef",
+                "evidenceRefs",
+                "planRef",
+                "componentCatalogVersion",
+                "components",
+                "userInputSchema",
+                "actionMappings"
+              ],
+              "properties": {
+                "decisionRef": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+                },
+                "evidenceRefs": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+                  }
+                },
+                "componentCatalogVersion": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Semver"
+                },
+                "components": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "userInputSchema": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/SchemaRef"
+                },
+                "classification": {
+                  "type": "string"
+                },
+                "accessibility": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "actionMappings": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "event",
+                      "planStepId"
+                    ],
+                    "properties": {
+                      "event": {
+                        "type": "string"
+                      },
+                      "planStepId": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "extensions": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Extensions"
+                },
+                "planRef": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/ApplicationSpec",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "BuilderPrompt": {
+      "allOf": [
+        {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactBase"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "artifactType": {
+              "const": "BuilderPrompt"
+            },
+            "header": {
+              "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactHeader"
+            },
+            "body": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "applicationSpecRef",
+                "targetBuilder",
+                "compilerVersion",
+                "permittedComponentCatalog",
+                "requestedOutputs",
+                "noSecretDeclaration"
+              ],
+              "properties": {
+                "applicationSpecRef": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/ArtifactRef"
+                },
+                "targetBuilder": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "compilerVersion": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Semver"
+                },
+                "permittedComponentCatalog": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Semver"
+                },
+                "requestedOutputs": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "noSecretDeclaration": {
+                  "const": true
+                },
+                "promptText": {
+                  "type": "string"
+                },
+                "extensions": {
+                  "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Extensions"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/BuilderPrompt",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "Error": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "code",
+        "retryable",
+        "safeDetail",
+        "correlationId"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "enum": [
+            "INVALID_ARTIFACT",
+            "UNSUPPORTED_PROFILE",
+            "UNSUPPORTED_VERSION",
+            "UNKNOWN_CRITICAL_EXTENSION",
+            "UNTRUSTED_PARTICIPANT",
+            "AUTH_REQUIRED",
+            "AUTH_DENIED",
+            "PURPOSE_DENIED",
+            "NEGOTIATION_REQUIRED",
+            "APPROVAL_REQUIRED",
+            "AUTHORITY_EXPIRED",
+            "AUTHORITY_CONSUMED",
+            "EVIDENCE_STALE",
+            "PRECONDITION_FAILED",
+            "STALE_PRECONDITION",
+            "CONFLICT",
+            "IDEMPOTENCY_KEY_REUSE_CONFLICT",
+            "QUOTA_EXCEEDED",
+            "POLICY_EVALUATION_FAILED",
+            "OPERATION_UNKNOWN",
+            "CANCEL_NOT_POSSIBLE",
+            "INTERNAL"
+          ]
+        },
+        "retryable": {
+          "type": "boolean"
+        },
+        "safeDetail": {
+          "type": "string"
+        },
+        "retryAfter": {
+          "type": "string"
+        },
+        "correlationId": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Uuid"
+        }
+      },
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/Error",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "PlanDigest": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{43}$",
+      "description": "Unpadded base64url SHA-256 digest of RFC 8785 JCS plan_core.",
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/PlanDigest",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "PolicyRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "uri",
+        "version",
+        "digest"
+      ],
+      "properties": {
+        "uri": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Uri"
+        },
+        "version": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Semver"
+        },
+        "digest": {
+          "$ref": "https://aps-dda.example.invalid/schema/aps-dda-0.1.bundle.schema.json#/$defs/Digest"
+        }
+      },
+      "$id": "https://aps-dda.example.invalid/schema/aps-dda-0.1/defs/PolicyRef",
+      "$schema": "https://json-schema.org/draft/2020-12/schema"
+    }
+  }
+}

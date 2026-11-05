@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><IsPackable>false</IsPackable></PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../ApsDda.Runtime/ApsDda.Runtime.csproj" />
+    <EmbeddedResource Include="../../examples/insurance/synthetic-data.json" LogicalName="ApsDda.Demo.synthetic-data.json" />
+  </ItemGroup>
+</Project>

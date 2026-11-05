@@ -1,0 +1,13 @@
+bin/
+obj/
+generated/
+*.sqlite
+*.sqlite-*
+*.db
+*.pem
+*.pfx
+*.key
+artifact-chain.json
+bindings.json
+report.json
+builder-template.txt

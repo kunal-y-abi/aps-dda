@@ -1,0 +1,27 @@
+sequenceDiagram
+  participant Reviewer as Authenticated reviewer
+  participant Runtime as Durable workflow runtime
+  participant Authority as Authority-use store
+  participant Source as Source enforcement boundary
+  participant Op as Local operation and resource store
+  Reviewer->>Runtime: Review full payload and approve exact plan
+  Runtime->>Authority: Admit identity and bind one plan/workflow/step set
+  Authority-->>Runtime: Local use transaction committed
+  Note over Authority,Op: Separate local transactions, no cross-source atomicity
+  Runtime->>Runtime: Persist original invocation and UNKNOWN intent
+  Runtime->>Source: Dispatch same invocation, key and fingerprint
+  Source->>Source: Recheck caller, authority, evidence, policy and expected state
+  Source->>Op: Local transaction: effect, operation, receipt and postcondition
+  Op-->>Source: Local commit
+  alt Reply received
+    Source-->>Runtime: Original signed receipt and postcondition
+  else Reply lost after possible commit
+    Runtime->>Runtime: Preserve unknown outcome and original identity
+    Runtime->>Source: Authenticated lookup of original operation/key
+    Source->>Op: Read retained original result
+    Op-->>Source: Result or unresolved/not-found
+    Source-->>Runtime: Original result or unresolved
+    Note over Runtime,Source: Never auto-resend, unresolved stays unknown
+  end
+  Runtime->>Runtime: Verify source signatures and exact operation/postcondition
+  Runtime-->>Reviewer: Verified completion or truthful unresolved/manual status

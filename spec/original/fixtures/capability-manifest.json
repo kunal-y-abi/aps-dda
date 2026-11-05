@@ -1,0 +1,58 @@
+{
+  "artifactType": "CapabilityManifest",
+  "header": {
+    "id": "123e4567-e89b-12d3-a456-426614174003",
+    "artifactVersion": "0.1.0",
+    "specVersion": "APS-DDA/0.1",
+    "issuer": "https://procurement.example.invalid/aps/publisher",
+    "issuedAt": "2026-10-16T09:00:00Z",
+    "contentDigest": "sha256:3333333333333333333333333333333333333333333333333333333333333333"
+  },
+  "body": {
+    "roles": [
+      "APS-Read-Publisher",
+      "APS-Action-Executor"
+    ],
+    "profileVersions": [
+      "APS-DDA/0.1"
+    ],
+    "bindings": [
+      "https-json",
+      "mcp-2026-07-28",
+      "a2a-v1"
+    ],
+    "endpoints": [
+      {
+        "endpoint": "https://procurement.example.invalid/aps",
+        "audience": "https://procurement.example.invalid/",
+        "authentication": "oauth2",
+        "trustKeyRef": "https://registry.example.invalid/keys/procurement"
+      }
+    ],
+    "capabilityRefs": [
+      {
+        "artifactType": "DataProduct",
+        "id": "123e4567-e89b-12d3-a456-426614174001",
+        "artifactVersion": "0.1.0",
+        "contentDigest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "uri": "https://procurement.example.invalid/aps/artifacts/1"
+      },
+      {
+        "artifactType": "ProcessCapability",
+        "id": "123e4567-e89b-12d3-a456-426614174002",
+        "artifactVersion": "0.1.0",
+        "contentDigest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+        "uri": "https://procurement.example.invalid/aps/artifacts/2"
+      }
+    ],
+    "limits": {
+      "maxConcurrentReads": 20,
+      "maxConcurrentCommands": 5
+    },
+    "residency": [
+      "US"
+    ],
+    "deprecation": "30 days notice for compatible replacement",
+    "expiresAt": "2027-01-16T00:00:00Z"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "artifactType": "CommandInvocation",
+  "header": {
+    "id": "123e4567-e89b-12d3-a456-426614174008",
+    "artifactVersion": "0.1.0",
+    "specVersion": "APS-DDA/0.1",
+    "issuer": "https://execution.example.invalid/aps/invocations",
+    "issuedAt": "2026-10-16T09:00:00Z",
+    "contentDigest": "sha256:8888888888888888888888888888888888888888888888888888888888888888"
+  },
+  "body": {
+    "context": {
+      "tenantId": "northwind-test",
+      "subjectId": "user:maya.chen",
+      "workloadId": "app:procurement-console",
+      "executorId": "agent:ops-orchestrator",
+      "purpose": "purchase-order-exception-resolution",
+      "classification": "internal",
+      "residency": "US",
+      "correlationId": "123e4567-e89b-12d3-a456-426614174990",
+      "policyRefs": [
+        {
+          "uri": "https://policy.example.invalid/rules/purchase-order-cancellation",
+          "version": "1.0.0",
+          "digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        }
+      ]
+    },
+    "planRef": {
+      "artifactType": "ExecutionPlan",
+      "id": "123e4567-e89b-12d3-a456-426614174006",
+      "artifactVersion": "0.1.0",
+      "contentDigest": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
+      "uri": "https://procurement.example.invalid/aps/artifacts/6"
+    },
+    "planDigest": "YWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWE",
+    "stepId": "cancel-po-7841",
+    "capabilityRef": {
+      "artifactType": "ProcessCapability",
+      "id": "123e4567-e89b-12d3-a456-426614174002",
+      "artifactVersion": "0.1.0",
+      "contentDigest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "uri": "https://procurement.example.invalid/aps/artifacts/2"
+    },
+    "target": "https://procurement.example.invalid/purchase-orders/PO-7841",
+    "payloadDigest": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
+    "authorityRefs": [
+      {
+        "artifactType": "Approval",
+        "id": "123e4567-e89b-12d3-a456-426614174007",
+        "artifactVersion": "0.1.0",
+        "contentDigest": "sha256:7777777777777777777777777777777777777777777777777777777777777777",
+        "uri": "https://procurement.example.invalid/aps/artifacts/7"
+      }
+    ],
+    "idempotencyKey": "nw-po-7841-cancel-20261016",
+    "expectedState": "ETag:\"po-7841-v42\"",
+    "receiptRoute": "https://execution.example.invalid/aps/receipts",
+    "idempotencyDomain": "procurement:cancel-purchase-order",
+    "invocationFingerprint": "sha256:8888888888888888888888888888888888888888888888888888888888888888"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "profile": "aps-dda.synthetic-insurance/1",
+  "claims": {"unit":"aggregate-open-items","period":"synthetic-day-1","regions":[{"region":"north","open":"85"},{"region":"central","open":"65"},{"region":"south","open":"45"}],"retrievedText":"Synthetic aggregate counts only."},
+  "forecast": {"unit":"aggregate-added-items","period":"synthetic-day-1","regions":[{"region":"north","expected":"35","upper":"55"},{"region":"central","expected":"30","upper":"50"},{"region":"south","expected":"25","upper":"40"}]},
+  "capacity": {"unit":"internal-team-day","period":"synthetic-day-1","itemsPerTeam":"20","poolTeams":"7","reservedPoolTeams":"1","regions":[{"region":"north","baseTeams":"2","availableTeams":"5","emergencyReserveTeams":"1","minimumAdditionalTeams":"1","minimumServedItems":"60"},{"region":"central","baseTeams":"2","availableTeams":"5","emergencyReserveTeams":"1","minimumAdditionalTeams":"1","minimumServedItems":"60"},{"region":"south","baseTeams":"1","availableTeams":"4","emergencyReserveTeams":"1","minimumAdditionalTeams":"1","minimumServedItems":"40"}]},
+  "finance": {"unit":"synthetic-budget-credit","period":"synthetic-day-1","budget":"700","regions":[{"region":"north","costPerTeam":"120"},{"region":"central","costPerTeam":"100"},{"region":"south","costPerTeam":"80"}]}
+}

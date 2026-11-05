@@ -1,0 +1,63 @@
+{
+  "artifactType": "DecisionSpec",
+  "header": {
+    "id": "123e4567-e89b-12d3-a456-426614174005",
+    "artifactVersion": "0.1.0",
+    "specVersion": "APS-DDA/0.1",
+    "issuer": "https://decision.example.invalid/aps/decision",
+    "issuedAt": "2026-10-16T09:00:00Z",
+    "contentDigest": "sha256:5555555555555555555555555555555555555555555555555555555555555555"
+  },
+  "body": {
+    "context": {
+      "tenantId": "northwind-test",
+      "subjectId": "user:maya.chen",
+      "workloadId": "app:procurement-console",
+      "executorId": "agent:ops-orchestrator",
+      "purpose": "purchase-order-exception-resolution",
+      "classification": "internal",
+      "residency": "US",
+      "correlationId": "123e4567-e89b-12d3-a456-426614174990",
+      "policyRefs": [
+        {
+          "uri": "https://policy.example.invalid/rules/purchase-order-cancellation",
+          "version": "1.0.0",
+          "digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        }
+      ]
+    },
+    "accountableOwner": "user:maya.chen",
+    "question": "Should the unreceived balance of PO-7841 be cancelled?",
+    "objective": "Avoid avoidable supplier commitment while preserving source invariants.",
+    "hardConstraints": [
+      "Use only source-supported transitions.",
+      "Do not cancel after a receipt or accrual unless a separate exception command is selected."
+    ],
+    "alternatives": [
+      "Cancel full unreceived balance.",
+      "Route to manual buyer review."
+    ],
+    "evidenceRefs": [
+      {
+        "artifactType": "EvidenceBundle",
+        "id": "123e4567-e89b-12d3-a456-426614174004",
+        "artifactVersion": "0.1.0",
+        "contentDigest": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+        "uri": "https://procurement.example.invalid/aps/artifacts/4"
+      }
+    ],
+    "method": {
+      "type": "deterministic-rules",
+      "version": "1.0.0",
+      "parameterDigest": "sha256:5555555555555555555555555555555555555555555555555555555555555555"
+    },
+    "assumptions": [
+      "Source version 42 remains current at execution."
+    ],
+    "uncertainty": [
+      "Cross-source observations are not an atomic snapshot."
+    ],
+    "recommendation": "Propose cancellation only if source precondition ETag:\"po-7841-v42\" still holds.",
+    "actionEligibility": "eligible"
+  }
+}

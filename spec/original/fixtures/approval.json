@@ -1,0 +1,54 @@
+{
+  "artifactType": "Approval",
+  "header": {
+    "id": "123e4567-e89b-12d3-a456-426614174007",
+    "artifactVersion": "0.1.0",
+    "specVersion": "APS-DDA/0.1",
+    "issuer": "https://authority.example.invalid/aps/approvals",
+    "issuedAt": "2026-10-16T09:00:00Z",
+    "contentDigest": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+  },
+  "body": {
+    "context": {
+      "tenantId": "northwind-test",
+      "subjectId": "user:maya.chen",
+      "workloadId": "app:procurement-console",
+      "executorId": "agent:ops-orchestrator",
+      "purpose": "purchase-order-exception-resolution",
+      "classification": "internal",
+      "residency": "US",
+      "correlationId": "123e4567-e89b-12d3-a456-426614174990",
+      "policyRefs": [
+        {
+          "uri": "https://policy.example.invalid/rules/purchase-order-cancellation",
+          "version": "1.0.0",
+          "digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        }
+      ]
+    },
+    "planRef": {
+      "artifactType": "ExecutionPlan",
+      "id": "123e4567-e89b-12d3-a456-426614174006",
+      "artifactVersion": "0.1.0",
+      "contentDigest": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
+      "uri": "https://procurement.example.invalid/aps/artifacts/6"
+    },
+    "planDigest": "YWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWE",
+    "approverId": "user:maya.chen",
+    "authenticationEvidenceRef": "step-up-event:authn-20261016-01",
+    "policyRef": {
+      "artifactType": "PolicyDecision",
+      "id": "123e4567-e89b-12d3-a456-426614174015",
+      "artifactVersion": "0.1.0",
+      "contentDigest": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "uri": "https://policy.example.invalid/aps/artifacts/15"
+    },
+    "issuedAt": "2026-10-16T09:07:00Z",
+    "expiresAt": "2026-10-16T09:20:00Z",
+    "singleUse": true,
+    "allowedStepIds": [
+      "cancel-po-7841"
+    ],
+    "effectSummary": "Cancel the unreceived balance of PO-7841 only if source version po-7841-v42 remains current."
+  }
+}

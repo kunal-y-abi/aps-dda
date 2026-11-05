@@ -1,0 +1,58 @@
+{
+  "artifactType": "EvidenceBundle",
+  "header": {
+    "id": "123e4567-e89b-12d3-a456-426614174004",
+    "artifactVersion": "0.1.0",
+    "specVersion": "APS-DDA/0.1",
+    "issuer": "https://procurement.example.invalid/aps/evidence",
+    "issuedAt": "2026-10-16T09:00:00Z",
+    "contentDigest": "sha256:4444444444444444444444444444444444444444444444444444444444444444"
+  },
+  "body": {
+    "context": {
+      "tenantId": "northwind-test",
+      "subjectId": "user:maya.chen",
+      "workloadId": "app:procurement-console",
+      "executorId": "agent:ops-orchestrator",
+      "purpose": "purchase-order-exception-resolution",
+      "classification": "internal",
+      "residency": "US",
+      "correlationId": "123e4567-e89b-12d3-a456-426614174990",
+      "policyRefs": [
+        {
+          "uri": "https://policy.example.invalid/rules/purchase-order-cancellation",
+          "version": "1.0.0",
+          "digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        }
+      ]
+    },
+    "observationMode": "observational",
+    "items": [
+      {
+        "productRef": {
+          "artifactType": "DataProduct",
+          "id": "123e4567-e89b-12d3-a456-426614174001",
+          "artifactVersion": "0.1.0",
+          "contentDigest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+          "uri": "https://procurement.example.invalid/aps/artifacts/1"
+        },
+        "semanticRefs": [
+          {
+            "namespace": "https://semantics.example.invalid/procurement",
+            "term": "https://semantics.example.invalid/procurement/PurchaseOrder",
+            "version": "1.0.0",
+            "kind": "entity",
+            "localBinding": "purchase_order"
+          }
+        ],
+        "queryDigest": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+        "observedAt": "2026-10-16T09:02:00Z",
+        "sourceVersion": "ETag:\"po-7841-v42\"",
+        "watermark": "proc-seq-91832",
+        "qualityState": "healthy",
+        "cacheStatus": "live",
+        "valueRef": "protected://evidence/po-7841/v42"
+      }
+    ]
+  }
+}
